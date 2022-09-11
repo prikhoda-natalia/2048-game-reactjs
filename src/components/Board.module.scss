@@ -1,0 +1,10 @@
+.boardCell {
+  padding: 10px;
+  margin: 5px;
+  border: 1px solid #000;
+  border-radius: 10px;
+}
+.boardRow {
+  display: flex;
+  flex-direction: row;
+}
