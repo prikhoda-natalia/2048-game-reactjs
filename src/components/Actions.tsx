@@ -1,13 +1,13 @@
-import styles from './Actions.module.scss';
+import { useBoard } from '../hooks';
 
-type ActionsProps = {
-  onLeft: () => void
-}
-
-const Actions = ({onLeft}: ActionsProps) => {
+const Actions = () => {
+  const { gameOn, slideLeft, startGame } = useBoard();
   return (
     <div>
-      <button onClick={() => onLeft()}>Left</button>
+      {!gameOn && <button onClick={() => startGame()}>Start the game</button>}
+      {gameOn && 
+        <button onClick={() => slideLeft()}>Left</button>
+      }
     </div>
   );
 }
