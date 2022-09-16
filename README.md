@@ -23,6 +23,6 @@ Implement a frontend application allowing you to play game 2048 with the followi
 
 ## Articles to help to understand the logic and UI
 
-https://github.com/prikhoda-natalia/2048-game-reactjs - UI for tile animations
+https://www.freecodecamp.org/news/how-to-make-2048-game-in-react/ - UI for tile animations
 
 https://medium.com/tinyso/how-to-create-game-2048-in-javascript-reactjs-react-native-4588bfd136c9 - logic for compess and merge functions
