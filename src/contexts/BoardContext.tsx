@@ -17,7 +17,7 @@ export const BoardProvider = ({
   children,
 }: {children: React.ReactNode}) => {
   const boardWidthInPixels = 400;
-  const gridSize= 4;
+  const gridSize= 6;
 
   const [board, setBoard] = useState<BoardType>(getEmptyBoard(gridSize));
   const [gameOn, setGameOn] = useState(false);
