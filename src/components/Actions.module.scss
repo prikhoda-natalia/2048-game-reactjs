@@ -1,0 +1,27 @@
+.actionButton {
+  background: #8f7a66;
+  border-radius: 3px;
+  padding: 0 20px;
+  text-decoration: none;
+  color: #f9f6f2;
+  height: 40px;
+  line-height: 42px;
+  text-transform: uppercase;
+  border: 0;
+  font-size: 18px;
+  margin-top: 30px;
+  font-weight: bold;
+}
+
+.start {
+  background: #ff0000;
+  color: #fff;
+  text-transform: uppercase;
+  border: 0;
+  width: 100px;
+  height: 100px;
+  border-radius: 3px;
+  font-weight: bold;
+  box-shadow: 0 0 30px 10px rgb(243 215 116 / 0%), inset 0 0 0 1px rgb(255 255 255 / 0%);
+  font-size: 18px;
+}

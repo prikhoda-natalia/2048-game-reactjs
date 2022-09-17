@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useBoard } from '../hooks';
+import styles from './Actions.module.scss';
 
 const Actions = () => {
   const [animationOn, setAnimationOn] = useState(false);
@@ -23,9 +24,9 @@ const Actions = () => {
 
   return (
     <div>
-      {!gameOn && <button onClick={() => startGame()}>Start the game</button>}
+      {!gameOn && <button className={styles.start} onClick={() => startGame()}>Start</button>}
       {gameOn && 
-        <button disabled={animationOn} onClick={() => onActionClick('left')}>Left</button>
+        <button className={styles.actionButton} disabled={animationOn} onClick={() => onActionClick('left')}>Left</button>
       }
     </div>
   );

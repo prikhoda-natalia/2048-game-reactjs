@@ -16,7 +16,7 @@ const Cell = ({position, value}: CellType & {position: Array<number>}) => {
     height: `${boardWidthInPixels/gridSize}px`,
   };
 
-  return <div className={styles.cell} style={style}>{value > 0 && value}</div>;
+  return <div className={`${styles.cell} ${styles[`cell-${value}`]}`} style={style}>{value > 0 && value}</div>;
 }
 
 export default Cell;

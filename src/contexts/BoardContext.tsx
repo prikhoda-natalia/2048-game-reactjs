@@ -18,7 +18,7 @@ export const BoardProvider = ({
   children,
 }: {children: React.ReactNode}) => {
   const animationDuration= 250;
-  const boardWidthInPixels = 400;
+  const boardWidthInPixels = 500;
   const gridSize= 6;
 
   const [board, setBoard] = useState<BoardType>(getEmptyBoard(gridSize));
@@ -26,13 +26,13 @@ export const BoardProvider = ({
 
   const startGameMemo = useMemo(() => () => {
     setGameOn(true);
-    const boardWithRandomCell = getBoardWithRandomCell(board);
+    const boardWithRandomCell = getBoardWithRandomCell(board, gridSize);
     setBoard([...boardWithRandomCell]);
   }, [board]);
 
   const slideLeftMemo = useMemo(() => () => {
     const updatedBoard = getUpdatedBoard(board);
-    const updateBoardWithRandomCell = getBoardWithRandomCell(updatedBoard);
+    const updateBoardWithRandomCell = getBoardWithRandomCell(updatedBoard, gridSize);
     setBoard([...updateBoardWithRandomCell]);
   }, [board]);
 
