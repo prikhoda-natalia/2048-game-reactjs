@@ -5,6 +5,7 @@ import { getBoardWithRandomCell, getEmptyBoard, getUpdatedBoard } from '../utils
 export const BoardContext = createContext({} as BoardProviderProps);
 
 type BoardProviderProps = {
+  animationDuration: number;
   board: BoardType;
   boardWidthInPixels: number;
   gameOn: boolean;
@@ -16,6 +17,7 @@ type BoardProviderProps = {
 export const BoardProvider = ({
   children,
 }: {children: React.ReactNode}) => {
+  const animationDuration= 250;
   const boardWidthInPixels = 400;
   const gridSize= 6;
 
@@ -36,6 +38,7 @@ export const BoardProvider = ({
 
   const value = useMemo(
     () => ({
+      animationDuration,
       board,
       boardWidthInPixels,
       gameOn,
@@ -44,6 +47,7 @@ export const BoardProvider = ({
       startGame: startGameMemo,
     }),
     [
+      animationDuration,
       board,
       boardWidthInPixels,
       gameOn,
