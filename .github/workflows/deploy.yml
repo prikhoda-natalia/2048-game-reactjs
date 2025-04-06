@@ -15,20 +15,20 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-          cache: "yarn"
-
       - name: Enable Corepack
         run: corepack enable
 
-      - name: Prepare Yarn version
+      - name: Setup Node.js and Yarn
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Activate Yarn 4.8.1
         run: corepack prepare yarn@4.8.1 --activate
 
       - name: Install Dependencies
-        run: yarn install
+        run: yarn install --immutable
 
       - name: Build
         run: yarn build
