@@ -1,9 +1,17 @@
 {
-  "name": "2048",
+  "version": "1.0.0",
+  "name": "2048-game-reactjs",
+  "description": "A classic 2048 game built with React.js",
+  "homepage": "https://prikhoda-natalia.github.io/2048-game-reactjs",
   "private": true,
-  "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/prikhoda-natalia/2048-game-reactjs"
+  },
   "type": "module",
   "scripts": {
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build",
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",

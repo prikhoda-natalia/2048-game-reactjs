@@ -5,9 +5,9 @@ __metadata:
   version: 8
   cacheKey: 10c0
 
-"2048@workspace:.":
+"2048-game-reactjs@workspace:.":
   version: 0.0.0-use.local
-  resolution: "2048@workspace:."
+  resolution: "2048-game-reactjs@workspace:."
   dependencies:
     "@eslint/js": "npm:^9.21.0"
     "@reduxjs/toolkit": "npm:^2.6.1"
