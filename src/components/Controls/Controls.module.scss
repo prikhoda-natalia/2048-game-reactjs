@@ -1,0 +1,86 @@
+@use '../../utils/styles/game' as *;
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(3, $tile-size);
+  grid-template-columns: repeat(3, $tile-size);
+  grid-gap: $grid-gap;
+  justify-content: center;
+  align-items: center;
+
+  .arrow-UP {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .arrow-LEFT {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  
+  .arrow-RIGHT {
+    grid-column: 3;
+    grid-row: 2;
+  }
+  
+  .arrow-DOWN {
+    grid-column: 2;
+    grid-row: 3;
+  }
+}
+
+.button {
+  width: $tile-size;
+  height: $tile-size;
+  background-color: #f0f0f0;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+  
+  &.active {
+    background-color: #4caf50;
+    transform: scale(1.1);
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+  }
+}
+
+.arrow-LEFT::before {
+  border-width: 10px 15px 10px 0;
+  border-color: transparent currentColor transparent transparent;
+}
+.arrow-RIGHT::before {
+  border-width: 10px 0 10px 15px;
+  border-color: transparent transparent transparent currentColor;
+}
+.arrow-UP::before {
+  border-width: 0 10px 15px 10px;
+  border-color: transparent transparent currentColor transparent;
+}
+
+.arrow-DOWN::before {
+  border-width: 15px 10px 0 10px;
+  border-color: currentColor transparent transparent transparent;
+}
