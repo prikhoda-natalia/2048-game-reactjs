@@ -1,28 +1,54 @@
-# Game 2048 with React.js
+# React + TypeScript + Vite
 
-This is a test task I was given during my job search in September 2022.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Instructions
+Currently, two official plugins are available:
 
-Implement a frontend application allowing you to play game 2048 with the following specifications:
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-- The grid consists of 6x6 tiles
-- At the beginning of a game the grid is empty, except for one tile of value 2 placed at random.
-- The user can slide the tiles either up, down, left or right
-- After each slide a new tile with value 1 will appear in a random free space.
-- If there is no free space to put the new tile the game is lost
-- During the slide, tiles of equal values pushed into each other will merge into a new tile with the combined value. 2 + 2 = 4
-- If there are 3 values next to each other, e.g. 2 2 2, and the player slides right, the values closest to the wall should merge first resulting in 2 4.
-- If any tile reaches the value 2048 the game is won.
+## Expanding the ESLint configuration
 
-## Getting started
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-1. Clone the repository https://github.com/prikhoda-natalia/2048-game-reactjs
-2. Install dependecies `yarn install`
-3. Start the project `yarn start`
+```js
+export default tseslint.config({
+  extends: [
+    // Remove ...tseslint.configs.recommended and replace with this
+    ...tseslint.configs.recommendedTypeChecked,
+    // Alternatively, use this for stricter rules
+    ...tseslint.configs.strictTypeChecked,
+    // Optionally, add this for stylistic rules
+    ...tseslint.configs.stylisticTypeChecked,
+  ],
+  languageOptions: {
+    // other options...
+    parserOptions: {
+      project: ['./tsconfig.node.json', './tsconfig.app.json'],
+      tsconfigRootDir: import.meta.dirname,
+    },
+  },
+})
+```
 
-## Articles to help to understand the logic and UI
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-https://www.freecodecamp.org/news/how-to-make-2048-game-in-react/ - UI for tile animations
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
-https://medium.com/tinyso/how-to-create-game-2048-in-javascript-reactjs-react-native-4588bfd136c9 - logic for compess and merge functions
+export default tseslint.config({
+  plugins: {
+    // Add the react-x and react-dom plugins
+    'react-x': reactX,
+    'react-dom': reactDom,
+  },
+  rules: {
+    // other rules...
+    // Enable its recommended typescript rules
+    ...reactX.configs['recommended-typescript'].rules,
+    ...reactDom.configs.recommended.rules,
+  },
+})
+```

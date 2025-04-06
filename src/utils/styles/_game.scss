@@ -1,0 +1,5 @@
+
+$grid-gap: clamp(4px, 1vw, 8px);
+$board-padding: 15px;
+
+$tile-size: clamp(50px, calc((100vw - 2*#{$board-padding} - 5*#{$grid-gap})/6), 75px);
