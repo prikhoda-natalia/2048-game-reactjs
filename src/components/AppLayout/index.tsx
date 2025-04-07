@@ -4,6 +4,7 @@ import classNames from "classnames";
 import s from "./AppLayout.module.scss";
 import { Link, NavLink } from "react-router";
 import { appPaths } from "~/features/App/utils/constants";
+import logo from "/logo.svg";
 
 type AppLayoutProps = {
   children: React.ReactNode;
@@ -30,7 +31,7 @@ const AppLayout = ({ children, menuItems }: AppLayoutProps) => {
       <header className={s.header}>
         <div className={s.brandWrapper}>
           <Link className={s.brand} to={appPaths.home}>
-            2048
+            <img src={logo} className={s.logo} />
           </Link>
         </div>
         <button
