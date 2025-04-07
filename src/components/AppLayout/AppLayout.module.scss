@@ -43,10 +43,11 @@
   font-family: 'Playfair Display', serif;
   line-height: 1.15;
   display: block;
+  padding: 8px;
 }
 
 .brandWrapper {
-  display: block;
+  display: flex;
   flex: 1;
 }
 
@@ -62,6 +63,11 @@
   padding: 24px;
   flex: 0 0 auto;
   background: #fff;
+}
+
+.logo {
+  height: 64px;
+  display: block;
 }
 
 .main {
