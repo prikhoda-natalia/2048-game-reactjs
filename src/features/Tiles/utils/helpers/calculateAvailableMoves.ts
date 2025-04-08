@@ -1,6 +1,6 @@
 import { Update } from "@reduxjs/toolkit";
 import { RootState } from "~/features/App/types";
-import { DirectionOptions, GameState } from "~/features/Game/types";
+import { ActiveGameState, DirectionOptions } from "~/features/Game/types";
 import { COLUMNS, ROWS } from "~/features/Game/utils/constants";
 import { directionToCoordinates } from "~/features/Game/utils/directionToCoordinates";
 import { Tile } from "../../types";
@@ -13,10 +13,10 @@ type CalculateAvailableMovesProps = {
 export function calculateAvailableMoves({
   tiles,
   newTileId,
-}: CalculateAvailableMovesProps): GameState["availableMoves"] {
+}: CalculateAvailableMovesProps): ActiveGameState["availableMoves"] {
   const directions = Object.values(DirectionOptions);
 
-  const availableMoves: GameState["availableMoves"] = {};
+  const availableMoves: ActiveGameState["availableMoves"] = {};
 
   for (const direction of directions) {
     const {

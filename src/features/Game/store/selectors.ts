@@ -1,35 +1,17 @@
 import { createSelector } from "@reduxjs/toolkit";
 import { RootState } from "~/features/App/types";
-import { GameStatus } from "../types";
+import { GameStatus } from "~/features/Game/types";
 
 export const selectGameState = (state: RootState) => state.game;
 
-export const selectIsGameNotStarted = createSelector(
+export const selectGameStatus = createSelector(
   selectGameState,
-  (gameState) => gameState.status === GameStatus.NOT_STARTED
+  (gameState) => gameState.status
 );
 
 export const selectIsGameStarted = createSelector(
   selectGameState,
   (gameState) => gameState.status !== GameStatus.NOT_STARTED
-);
-
-export const selectIsGameActive = createSelector(
-  selectGameState,
-  (gameState) =>
-    gameState.startedAt !== null &&
-    (gameState.status === GameStatus.IDLE ||
-      gameState.status === GameStatus.LOADING)
-);
-
-export const selectIsGameWon = createSelector(
-  selectGameState,
-  (gameState) => gameState.status === GameStatus.WON
-);
-
-export const selectIsGameLost = createSelector(
-  selectGameState,
-  (gameState) => gameState.status === GameStatus.LOST
 );
 
 export const selectIsGameIdle = createSelector(
