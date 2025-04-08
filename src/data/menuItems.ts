@@ -5,4 +5,8 @@ export const menuItems = [
     label: "Game",
     to: appPaths.home,
   },
+  {
+    label: "Statistics",
+    to: appPaths.statistics,
+  },
 ];

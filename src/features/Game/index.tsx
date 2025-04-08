@@ -5,78 +5,56 @@ import { selectAllTileIds } from "~/features/Tiles/store/selectors";
 import { useAppDispatch } from "~/features/App/hooks/useAppDispatch";
 import { DirectionOptions } from "~/features/Game/types";
 import Controls from "~/components/Controls";
-import { resetGame, startGame } from "~/features/Game/store/slice";
-import { addFirstTile, processUserMove } from "~/features/Game/store/thunks";
 import {
-  selectIsGameActive,
+  giveUpGame,
+  processUserMove,
+  startGameAndAddFirstTile,
+} from "~/features/Game/store/thunks";
+import {
+  selectGameStatus,
   selectIsGameIdle,
-  selectIsGameLost,
   selectIsGameStarted,
-  selectIsGameWon,
 } from "~/features/Game/store/selectors";
-import GameStatus from "~/components/GameStatus";
+import GameMessage from "~/components/GameMessage";
 import Page from "~/components/Page";
+import Actions from "~/components/Actions";
+import { isGameStatusDisabled } from "./utils/checkGameStatus";
 
 function Game() {
   const dispatch = useAppDispatch();
 
   const tileIds = useAppSelector(selectAllTileIds);
+  const status = useAppSelector(selectGameStatus);
   const isGameStarted = useAppSelector(selectIsGameStarted);
   const isGameIdle = useAppSelector(selectIsGameIdle);
-  const isGameActive = useAppSelector(selectIsGameActive);
-  const isGameWon = useAppSelector(selectIsGameWon);
-  const isGameLost = useAppSelector(selectIsGameLost);
 
-  const handleReset = () => {
-    dispatch(resetGame());
+  const handleGiveUp = async () => {
+    await dispatch(giveUpGame());
   };
 
   const handleStart = async () => {
-    const startedAt = new Date();
-
-    await dispatch(startGame({ startedAt: startedAt.toString() }));
-    dispatch(addFirstTile());
+    await dispatch(startGameAndAddFirstTile());
   };
 
-  const handleUserMove = (direction: DirectionOptions) => {
-    dispatch(processUserMove({ direction }));
+  const handleUserMove = async (direction: DirectionOptions) => {
+    await dispatch(processUserMove({ direction }));
   };
 
   return (
     <Page>
       <Page.Section hasPadding>
-        <button onClick={handleReset} disabled={!isGameIdle}>
-          Reset
-        </button>
+        <Actions>
+          <button onClick={handleGiveUp} disabled={!isGameIdle}>
+            Give Up
+          </button>
+        </Actions>
       </Page.Section>
       <Page.Column>
         <Board>
-          {isGameStarted ? (
-            tileIds.map((tileId) => <Tile key={tileId} id={tileId} />)
-          ) : (
-            <GameStatus
-              title="Welcome to the Game!"
-              subtitle="Press Start to begin."
-              actions={
-                <button onClick={handleStart} disabled={isGameActive}>
-                  Start
-                </button>
-              }
-            />
-          )}
-          {isGameWon && (
-            <GameStatus
-              title="Congratulations!"
-              subtitle="You won!"
-              actions={<button onClick={handleStart}>Play Again</button>}
-            />
-          )}
-          {isGameLost && (
-            <GameStatus
-              title="Game Over"
-              subtitle="You lost! Try again."
-              actions={<button onClick={handleStart}>Play Again</button>}
-            />
+          {isGameStarted &&
+            tileIds.map((tileId) => <Tile key={tileId} id={tileId} />)}
+          {isGameStatusDisabled(status) && (
+            <GameMessage status={status} onClick={handleStart} />
           )}
         </Board>
       </Page.Column>

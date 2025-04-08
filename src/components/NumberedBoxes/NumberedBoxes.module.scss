@@ -1,0 +1,55 @@
+@use '../../utils/styles/breakpoints' as *;
+
+.this {
+  display: grid;
+  grid-column-gap: 48px;
+  grid-row-gap: 48px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto;
+}
+
+.value {
+  font-weight: 400;
+  font-size: 68px;
+  font-family: 'Inconsolata', sans-serif;
+  line-height: 1;
+  margin-bottom: 24px;
+  position: absolute;
+  top: -0.5em;
+  background: #fff;
+  padding: 0 8px;
+  left: -42px;
+  color: #5c5c5c;
+}
+
+.item {
+  align-self: center;
+  border: 1px dotted #333;
+  padding: 24px;
+  position: relative;
+}
+
+.title {
+  font-weight: 300;
+  font-size: 22px;
+  font-family: 'Montserrat', sans-serif;
+  line-height: 1.25;
+  margin-bottom: 24px;
+}
+
+@media (max-width: $bp-max-tablet) {
+  .this {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .value {
+    font-size: 48px;
+    left: -24px;
+  }
+}
+
+@media (max-width: $bp-max-mobile-landscape) {
+  .this {
+    grid-template-columns: 1fr;
+  }
+}
