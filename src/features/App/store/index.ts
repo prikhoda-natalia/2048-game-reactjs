@@ -7,6 +7,6 @@ export const store = configureStore({
   reducer: {
     game: gameSlice,
     statistics: statisticsSlice,
-    tiles: tilesSlice,
-  },
+    tiles: tilesSlice
+  }
 });

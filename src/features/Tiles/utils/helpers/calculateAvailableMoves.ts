@@ -1,9 +1,10 @@
-import { Update } from "@reduxjs/toolkit";
-import { RootState } from "~/features/App/types";
-import { ActiveGameState, DirectionOptions } from "~/features/Game/types";
+import type { Update } from "@reduxjs/toolkit";
+import type { RootState } from "~/features/App/types";
+import type { ActiveGameState } from "~/features/Game/types";
+import { DirectionOptions } from "~/features/Game/types";
 import { COLUMNS, ROWS } from "~/features/Game/utils/constants";
 import { directionToCoordinates } from "~/features/Game/utils/directionToCoordinates";
-import { Tile } from "../../types";
+import type { Tile } from "~/features/Tiles/types";
 
 type CalculateAvailableMovesProps = {
   tiles: RootState["tiles"]["entities"];
@@ -12,7 +13,7 @@ type CalculateAvailableMovesProps = {
 
 export function calculateAvailableMoves({
   tiles,
-  newTileId,
+  newTileId
 }: CalculateAvailableMovesProps): ActiveGameState["availableMoves"] {
   const directions = Object.values(DirectionOptions);
 
@@ -27,7 +28,7 @@ export function calculateAvailableMoves({
       xLoopStart,
       yLoopContinue,
       yLoopStart,
-      yLoopStep,
+      yLoopStep
     } = directionToCoordinates[direction];
 
     const cellsMatrix: (string | null)[][] = Array.from({ length: ROWS }, () =>
@@ -64,8 +65,8 @@ export function calculateAvailableMoves({
             id: currentTileId,
             changes: {
               x: targetX,
-              y: targetY,
-            },
+              y: targetY
+            }
           };
 
           currentX = targetX;
@@ -96,8 +97,8 @@ export function calculateAvailableMoves({
             id: targetTile.id,
             changes: {
               ...targetTileChanges,
-              value: currentTile.value + targetTile.value,
-            },
+              value: currentTile.value + targetTile.value
+            }
           };
 
           cellsMatrix[currentY][currentX] = null;
@@ -106,8 +107,8 @@ export function calculateAvailableMoves({
             changes: {
               x: targetX,
               y: targetY,
-              isActive: false,
-            },
+              isActive: false
+            }
           };
         }
       }
@@ -133,13 +134,13 @@ export function calculateAvailableMoves({
         value: 2,
         x,
         y,
-        isActive: true,
+        isActive: true
       };
 
       cellsMatrix[y][x] = nextNewTile.id;
 
       availableMoves[direction] = {
-        newTile: nextNewTile,
+        newTile: nextNewTile
       };
       if (Object.values(changedTiles).length > 0) {
         availableMoves[direction].changedTiles = Object.values(changedTiles);

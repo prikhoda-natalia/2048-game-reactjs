@@ -1,26 +1,27 @@
+import React from "react";
+import Actions from "~/components/Actions";
 import Board from "~/components/Board";
-import Tile from "~/components/Tile";
-import { useAppSelector } from "~/features/App/hooks/useAppSelector";
-import { selectAllTileIds } from "~/features/Tiles/store/selectors";
-import { useAppDispatch } from "~/features/App/hooks/useAppDispatch";
-import { DirectionOptions } from "~/features/Game/types";
 import Controls from "~/components/Controls";
-import {
-  giveUpGame,
-  processUserMove,
-  startGameAndAddFirstTile,
-} from "~/features/Game/store/thunks";
+import GameMessage from "~/components/GameMessage";
+import Page from "~/components/Page";
+import Tile from "~/components/Tile";
+import { useAppDispatch } from "~/features/App/hooks/useAppDispatch";
+import { useAppSelector } from "~/features/App/hooks/useAppSelector";
 import {
   selectGameStatus,
   selectIsGameIdle,
-  selectIsGameStarted,
+  selectIsGameStarted
 } from "~/features/Game/store/selectors";
-import GameMessage from "~/components/GameMessage";
-import Page from "~/components/Page";
-import Actions from "~/components/Actions";
+import {
+  giveUpGame,
+  processUserMove,
+  startGameAndAddFirstTile
+} from "~/features/Game/store/thunks";
+import type { DirectionOptions } from "~/features/Game/types";
+import { selectAllTileIds } from "~/features/Tiles/store/selectors";
 import { isGameStatusDisabled } from "./utils/checkGameStatus";
 
-function Game() {
+const Game = (): React.JSX.Element => {
   const dispatch = useAppDispatch();
 
   const tileIds = useAppSelector(selectAllTileIds);
@@ -28,15 +29,15 @@ function Game() {
   const isGameStarted = useAppSelector(selectIsGameStarted);
   const isGameIdle = useAppSelector(selectIsGameIdle);
 
-  const handleGiveUp = async () => {
+  const handleGiveUp = async (): Promise<void> => {
     await dispatch(giveUpGame());
   };
 
-  const handleStart = async () => {
+  const handleStart = async (): Promise<void> => {
     await dispatch(startGameAndAddFirstTile());
   };
 
-  const handleUserMove = async (direction: DirectionOptions) => {
+  const handleUserMove = async (direction: DirectionOptions): Promise<void> => {
     await dispatch(processUserMove({ direction }));
   };
 
@@ -63,6 +64,6 @@ function Game() {
       </Page.Column>
     </Page>
   );
-}
+};
 
 export default Game;

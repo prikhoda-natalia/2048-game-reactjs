@@ -1,13 +1,14 @@
+import React from "react";
 import { Routes } from "react-router";
 import { Route } from "react-router";
 import AppLayout from "~/components/AppLayout";
-import Game from "~/features/Game";
 import { menuItems } from "~/data/menuItems";
+import Game from "~/features/Game";
 import "~/utils/styles/global.scss";
-import { appPaths } from "./utils/constants";
 import Statistics from "~/features/Statistics";
+import { appPaths } from "./utils/constants";
 
-function App() {
+const App = (): React.JSX.Element => {
   return (
     <AppLayout menuItems={menuItems}>
       <Routes>
@@ -16,6 +17,6 @@ function App() {
       </Routes>
     </AppLayout>
   );
-}
+};
 
 export default App;

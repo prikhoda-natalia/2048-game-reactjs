@@ -1,5 +1,5 @@
 import { createEntityAdapter } from "@reduxjs/toolkit";
-import { Tile } from "../types";
+import type { Tile } from "~/features/Tiles/types";
 
 export const tilesAdapter = createEntityAdapter<Tile>();
 

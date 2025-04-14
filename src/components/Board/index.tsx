@@ -1,11 +1,12 @@
-import s from './Board.module.scss';
+import React from "react";
+import s from "./Board.module.scss";
 
 type BoardProps = {
   children: React.ReactNode;
-}
+};
 
-const Board = ({children}: BoardProps) => {
-  const cells = Array.from({ length: 36 }, (_, index) => index)
+const Board = ({ children }: BoardProps): React.JSX.Element => {
+  const cells = Array.from({ length: 36 }, (_, index) => index);
 
   return (
     <div className={s.board}>
@@ -14,7 +15,7 @@ const Board = ({children}: BoardProps) => {
       ))}
       {children}
     </div>
-  )
-}
+  );
+};
 
-export default Board
+export default Board;

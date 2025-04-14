@@ -1,14 +1,16 @@
-import { RootState } from "~/features/App/types";
-import { statisticsAdapter } from "./entityAdapter";
 import { createSelector } from "@reduxjs/toolkit";
+import type { RootState } from "~/features/App/types";
+import type { StatisticsState } from "~/features/Statistics/types";
+import { statisticsAdapter } from "./entityAdapter";
 
-export const selectStatisticsState = (state: RootState) => state.statistics;
+export const selectStatisticsState = (state: RootState): StatisticsState =>
+  state.statistics;
 
 export const statisticsSelectors = statisticsAdapter.getSelectors(
   selectStatisticsState
 );
 
-export const selectFinishedGamesTotal = (state: RootState) =>
+export const selectFinishedGamesTotal = (state: RootState): number =>
   statisticsSelectors.selectTotal(state);
 
 export const selectWonGamesTotal = createSelector(

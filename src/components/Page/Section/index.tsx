@@ -1,7 +1,6 @@
-import React from "react";
 import classNames from "classnames";
-
-import s from "../Page.module.scss";
+import React from "react";
+import s from "~/components/Page/Page.module.scss";
 
 type SectionProps = {
   children: React.ReactNode;
@@ -9,10 +8,14 @@ type SectionProps = {
   heading?: string;
 };
 
-const Section = ({ children, hasPadding = false, heading }: SectionProps) => {
+const Section = ({
+  children,
+  hasPadding = false,
+  heading
+}: SectionProps): React.JSX.Element => {
   const sectionClassName = classNames({
     [s.section]: true,
-    [s.section_hasPadding]: hasPadding,
+    [s.section_hasPadding]: hasPadding
   });
 
   if (!heading) {

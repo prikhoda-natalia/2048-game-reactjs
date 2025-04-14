@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { tilesAdapter, tilesInitialState } from "./entityAdapter";
 import { startGame } from "~/features/Game/store/slice";
+import { tilesAdapter, tilesInitialState } from "./entityAdapter";
 
 const tilesSlice = createSlice({
   name: "tiles",
@@ -8,13 +8,13 @@ const tilesSlice = createSlice({
   reducers: {
     addTile: tilesAdapter.addOne,
     addFirstTile: tilesAdapter.addOne,
-    updateTiles: tilesAdapter.updateMany,
+    updateTiles: tilesAdapter.updateMany
   },
   extraReducers: (builder) => {
     builder.addCase(startGame, (state) => {
       tilesAdapter.removeAll(state);
     });
-  },
+  }
 });
 
 export const { addFirstTile, addTile, updateTiles } = tilesSlice.actions;

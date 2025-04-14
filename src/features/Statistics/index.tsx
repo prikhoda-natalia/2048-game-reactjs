@@ -1,14 +1,16 @@
+import React from "react";
+import type { NumberedBox } from "~/components/NumberedBoxes";
+import NumberedBoxes from "~/components/NumberedBoxes";
 import Page from "~/components/Page";
-import { useAppSelector } from "../App/hooks/useAppSelector";
+import { useAppSelector } from "~/features/App/hooks/useAppSelector";
 import {
   selectFinishedGamesTotal,
   selectGivenUpGamesTotal,
   selectLostGamesTotal,
-  selectWonGamesTotal,
+  selectWonGamesTotal
 } from "./store/selectors";
-import NumberedBoxes, { NumberedBox } from "~/components/NumberedBoxes";
 
-function Statistics() {
+const Statistics = (): React.JSX.Element => {
   const wonGamesTotal = useAppSelector(selectWonGamesTotal);
   const lostGamesTotal = useAppSelector(selectLostGamesTotal);
   const givenUpGamesTotal = useAppSelector(selectGivenUpGamesTotal);
@@ -17,20 +19,20 @@ function Statistics() {
   const stats: NumberedBox[] = [
     {
       title: "Games Played",
-      value: gamesTotal,
+      value: gamesTotal
     },
     {
       title: "Games Won",
-      value: wonGamesTotal,
+      value: wonGamesTotal
     },
     {
       title: "Games Lost",
-      value: lostGamesTotal,
+      value: lostGamesTotal
     },
     {
       title: "Games Given Up",
-      value: givenUpGamesTotal,
-    },
+      value: givenUpGamesTotal
+    }
   ];
 
   return (
@@ -40,6 +42,6 @@ function Statistics() {
       </Page.Section>
     </Page>
   );
-}
+};
 
 export default Statistics;

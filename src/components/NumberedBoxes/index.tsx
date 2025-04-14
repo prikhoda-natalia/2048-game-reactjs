@@ -1,3 +1,4 @@
+import React from "react";
 import s from "./NumberedBoxes.module.scss";
 
 export type NumberedBox = {
@@ -9,7 +10,7 @@ type NumberedBoxesProps = {
   items: NumberedBox[];
 };
 
-const NumberedBoxes = ({ items }: NumberedBoxesProps) => (
+const NumberedBoxes = ({ items }: NumberedBoxesProps): React.JSX.Element => (
   <div className={s.this}>
     {items.map(({ value, title }) => {
       return (

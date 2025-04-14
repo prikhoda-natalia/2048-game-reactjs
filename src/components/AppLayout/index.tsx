@@ -1,9 +1,8 @@
-import React, { useState } from "react";
 import classNames from "classnames";
-
-import s from "./AppLayout.module.scss";
+import React, { useState } from "react";
 import { Link, NavLink } from "react-router";
 import { appPaths } from "~/features/App/utils/constants";
+import s from "./AppLayout.module.scss";
 import logo from "/logo.svg";
 
 type AppLayoutProps = {
@@ -14,12 +13,15 @@ type AppLayoutProps = {
   }[];
 };
 
-const AppLayout = ({ children, menuItems }: AppLayoutProps) => {
+const AppLayout = ({
+  children,
+  menuItems
+}: AppLayoutProps): React.JSX.Element => {
   const [isMobileMenuShown, toggleMobileMenu] = useState(false);
   const thisClass = classNames({
     [s.this]: true,
     [s.this_mobileMenuHidden]: !isMobileMenuShown,
-    [s.this_mobileMenuShown]: isMobileMenuShown,
+    [s.this_mobileMenuShown]: isMobileMenuShown
   });
   const menuSwitcherTitle = isMobileMenuShown ? "Close" : "Menu";
   const contentId = "page-content";
@@ -49,7 +51,7 @@ const AppLayout = ({ children, menuItems }: AppLayoutProps) => {
                     className={({ isActive }) =>
                       classNames({
                         [s.menuLink]: true,
-                        [s.menuLink_active]: isActive,
+                        [s.menuLink_active]: isActive
                       })
                     }
                     to={item.to}

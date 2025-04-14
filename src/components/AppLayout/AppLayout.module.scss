@@ -1,6 +1,6 @@
-@use '../../utils/styles/a11y' as *;
-@use '../../utils/styles/breakpoints' as *;
-@use '../../utils/styles/uads' as *;
+@use "../../utils/styles/a11y" as *;
+@use "../../utils/styles/breakpoints" as *;
+@use "../../utils/styles/uads" as *;
 
 .this {
   display: flex;
@@ -40,7 +40,7 @@
   );
   font-weight: 700;
   font-size: 34px;
-  font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
   line-height: 1.15;
   display: block;
   padding: 8px;
@@ -118,7 +118,7 @@
   );
   font-weight: 400;
   font-size: 15px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   line-height: 1.25;
   letter-spacing: 2;
   text-transform: lowercase;
@@ -129,7 +129,7 @@
   align-items: center;
 
   &::before {
-    content: '';
+    content: "";
     display: block;
     position: relative;
     width: 6px;
@@ -272,8 +272,8 @@
       $word-spacing: normal,
       $writing-mode: horizontal-tb
     );
-    font-family: 'Montserrat', sans-serif;
-    
+    font-family: "Montserrat", sans-serif;
+
     .this_menuHidden & {
       display: none;
     }

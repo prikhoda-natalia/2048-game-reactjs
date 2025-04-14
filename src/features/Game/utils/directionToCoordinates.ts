@@ -1,16 +1,19 @@
-import { DirectionOptions } from "../types";
+import { DirectionOptions } from "~/features/Game/types";
 import { COLUMNS, ROWS } from "./constants";
 
-export const directionToCoordinates: Record<DirectionOptions, {
-  diffX: number,
-  diffY: number,
-  xLoopContinue: (x: number) => boolean,
-  xLoopStep: number,
-  xLoopStart: number,
-  yLoopContinue: (y: number) => boolean,
-  yLoopStart: number,
-  yLoopStep: number
-}> = {
+export const directionToCoordinates: Record<
+  DirectionOptions,
+  {
+    diffX: number;
+    diffY: number;
+    xLoopContinue: (x: number) => boolean;
+    xLoopStep: number;
+    xLoopStart: number;
+    yLoopContinue: (y: number) => boolean;
+    yLoopStart: number;
+    yLoopStep: number;
+  }
+> = {
   [DirectionOptions.LEFT]: {
     diffX: -1,
     diffY: 0,
@@ -50,5 +53,5 @@ export const directionToCoordinates: Record<DirectionOptions, {
     yLoopContinue: (y) => y >= 0 && y <= ROWS - 2,
     yLoopStart: ROWS - 2,
     yLoopStep: -1
-  },
-}
+  }
+};
