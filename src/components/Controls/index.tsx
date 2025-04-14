@@ -1,15 +1,19 @@
 import classNames from "classnames";
+import React from "react";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { DirectionOptions } from "~/features/Game/types";
-import s from "./Controls.module.scss";
 import { throttle } from "~/utils/helpers/throttle";
+import s from "./Controls.module.scss";
 
 type ControlsProps = {
   onUserMove: (direction: DirectionOptions) => void;
   isDisabled: boolean;
 };
 
-const Controls = ({ onUserMove, isDisabled }: ControlsProps) => {
+const Controls = ({
+  onUserMove,
+  isDisabled
+}: ControlsProps): React.JSX.Element => {
   const [activeDirection, setActiveDirection] =
     useState<DirectionOptions | null>(null);
 
@@ -32,7 +36,7 @@ const Controls = ({ onUserMove, isDisabled }: ControlsProps) => {
   }, [handleUserMove]);
 
   useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
+    const handleKeyDown = (event: KeyboardEvent): void => {
       event.preventDefault();
       event.stopPropagation();
 
@@ -58,7 +62,7 @@ const Controls = ({ onUserMove, isDisabled }: ControlsProps) => {
 
     window.addEventListener("keydown", handleKeyDown);
 
-    return () => {
+    return (): void => {
       window.removeEventListener("keydown", handleKeyDown);
       throttledHandleUserMove.cancel();
     };
@@ -71,7 +75,7 @@ const Controls = ({ onUserMove, isDisabled }: ControlsProps) => {
           const className = classNames({
             [s.button]: true,
             [s[`arrow-${direction}`]]: true,
-            [s.active]: activeDirection === direction,
+            [s.active]: activeDirection === direction
           });
 
           return (

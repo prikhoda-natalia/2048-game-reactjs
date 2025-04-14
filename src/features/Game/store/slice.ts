@@ -1,29 +1,29 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {
+import type {
   NotStartedGameState,
-  GameStatus,
   StartGameAction,
   GameState,
   UpdateGameStatusAction,
   ActiveGameState,
   LogUserMoveAction,
-  FinishGameAction,
-} from "../types";
+  FinishGameAction
+} from "~/features/Game/types";
+import { GameStatus } from "~/features/Game/types";
+import { isGameActive } from "~/features/Game/utils/checkGameStatus";
 import {
   addFirstTile,
   addTile,
-  updateTiles,
+  updateTiles
 } from "~/features/Tiles/store/slice";
-import { isGameActive } from "../utils/checkGameStatus";
 import { pick } from "~/utils/helpers/pick";
 
 const initialNotStartedGameState: NotStartedGameState = {
-  status: GameStatus.NOT_STARTED,
+  status: GameStatus.NOT_STARTED
 };
 
 const initialStartedGameState = ({
   id,
-  startedAt,
+  startedAt
 }: {
   id: string;
   startedAt: string;
@@ -33,7 +33,7 @@ const initialStartedGameState = ({
   userMoves: [],
   availableMoves: {},
   startedAt,
-  status: GameStatus.IDLE,
+  status: GameStatus.IDLE
 });
 
 const gameSlice = createSlice({
@@ -57,7 +57,7 @@ const gameSlice = createSlice({
           ...pick(state, ["id", "startedAt", "highestValue"]),
           status,
           finishedAt,
-          totalSteps,
+          totalSteps
         };
       }
     },
@@ -72,7 +72,7 @@ const gameSlice = createSlice({
           state.availableMoves = availableMoves;
         }
       }
-    },
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -99,7 +99,7 @@ const gameSlice = createSlice({
           state.highestValue = highestVlue;
         }
       });
-  },
+  }
 });
 
 export const { finishGame, logUserMove, startGame, updateGameStatus } =

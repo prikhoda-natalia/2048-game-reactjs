@@ -4,4 +4,4 @@ export type Tile = {
   x: number;
   y: number;
   isActive: boolean;
-}
+};

@@ -1,7 +1,10 @@
-import { PayloadAction, Update } from "@reduxjs/toolkit";
-import { DirectionOptions } from "./DirectionOptions";
-import { Tile } from "~/features/Tiles/types";
-import { ActiveGameStatus, FinishedGameStatus } from "../utils/checkGameStatus";
+import type { PayloadAction, Update } from "@reduxjs/toolkit";
+import type {
+  ActiveGameStatus,
+  FinishedGameStatus
+} from "~/features/Game/utils/checkGameStatus";
+import type { Tile } from "~/features/Tiles/types";
+import type { DirectionOptions } from "./DirectionOptions";
 
 export type GameState =
   | NotStartedGameState
@@ -41,7 +44,7 @@ export enum GameStatus {
   LOADING = "LOADING",
   WON = "WON",
   LOST = "LOST",
-  GIVEN_UP = "GIVEN_UP",
+  GIVEN_UP = "GIVEN_UP"
 }
 
 export type StartGameAction = PayloadAction<{

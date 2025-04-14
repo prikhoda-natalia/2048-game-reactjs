@@ -16,7 +16,7 @@ export function throttle<Args extends unknown[]>(
     }
   };
 
-  throttledFunction.cancel = () => {
+  throttledFunction.cancel = (): void => {
     if (timeoutId) {
       clearTimeout(timeoutId);
       timeoutId = null;

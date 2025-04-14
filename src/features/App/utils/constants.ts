@@ -1,4 +1,4 @@
 export const appPaths = {
   home: "/",
-  statistics: "/statistics",
+  statistics: "/statistics"
 };

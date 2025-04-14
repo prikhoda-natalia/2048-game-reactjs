@@ -1,15 +1,19 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { RootState } from "~/features/App/types";
-import { finishGame, startGame, updateGameStatus } from "./slice";
-import { Tile } from "~/features/Tiles/types";
-import { COLUMNS, ROWS } from "../utils/constants";
-import { addFirstTile, addTile } from "~/features/Tiles/store/slice";
+import type { RootState } from "~/features/App/types";
 import { logUserMove } from "~/features/Game/store/slice";
-import { GameStatus, ProcessUserMoveThunkArgs } from "~/features/Game/types";
-import { updateTiles } from "~/features/Tiles/store/slice";
-import { calculateAvailableMoves } from "~/features/Tiles/utils/helpers/calculateAvailableMoves";
+import type { ProcessUserMoveThunkArgs } from "~/features/Game/types";
+import { GameStatus } from "~/features/Game/types";
+import {
+  isGameActive,
+  isGameFinished
+} from "~/features/Game/utils/checkGameStatus";
+import { COLUMNS, ROWS } from "~/features/Game/utils/constants";
 import { updateStatistics } from "~/features/Statistics/store/slice";
-import { isGameActive, isGameFinished } from "../utils/checkGameStatus";
+import { updateTiles } from "~/features/Tiles/store/slice";
+import { addFirstTile, addTile } from "~/features/Tiles/store/slice";
+import type { Tile } from "~/features/Tiles/types";
+import { calculateAvailableMoves } from "~/features/Tiles/utils/helpers/calculateAvailableMoves";
+import { finishGame, startGame, updateGameStatus } from "./slice";
 
 export const startGameAndAddFirstTile = createAsyncThunk<
   void,
@@ -31,13 +35,13 @@ export const startGameAndAddFirstTile = createAsyncThunk<
     value: 2,
     x,
     y,
-    isActive: true,
+    isActive: true
   };
   await dispatch(addFirstTile(firstTile));
 
   const {
     game,
-    tiles: { entities: tiles },
+    tiles: { entities: tiles }
   } = getState();
 
   if (isGameActive(game)) {
@@ -45,13 +49,13 @@ export const startGameAndAddFirstTile = createAsyncThunk<
 
     const newAvailableMoves = calculateAvailableMoves({
       tiles,
-      newTileId: (userMoves.length + 1).toString(),
+      newTileId: (userMoves.length + 1).toString()
     });
 
     await dispatch(
       updateGameStatus({
         availableMoves: newAvailableMoves,
-        status: GameStatus.IDLE,
+        status: GameStatus.IDLE
       })
     );
   }
@@ -75,7 +79,7 @@ export const processUserMove = createAsyncThunk<
         finishGame({
           status: GameStatus.LOST,
           finishedAt: new Date().toString(),
-          totalSteps: game.userMoves.length,
+          totalSteps: game.userMoves.length
         })
       );
     } else {
@@ -89,7 +93,7 @@ export const processUserMove = createAsyncThunk<
 
       const {
         game: updatedGame,
-        tiles: { entities: tiles },
+        tiles: { entities: tiles }
       } = getState();
 
       if (isGameActive(updatedGame)) {
@@ -100,13 +104,13 @@ export const processUserMove = createAsyncThunk<
             finishGame({
               status: GameStatus.WON,
               finishedAt: new Date().toString(),
-              totalSteps: updatedGame.userMoves.length,
+              totalSteps: updatedGame.userMoves.length
             })
           );
         } else {
           const newAvailableMoves = calculateAvailableMoves({
             tiles,
-            newTileId: (userMoves.length + 1).toString(),
+            newTileId: (userMoves.length + 1).toString()
           });
 
           if (Object.keys(newAvailableMoves).length === 0) {
@@ -114,14 +118,14 @@ export const processUserMove = createAsyncThunk<
               finishGame({
                 status: GameStatus.LOST,
                 finishedAt: new Date().toString(),
-                totalSteps: updatedGame.userMoves.length,
+                totalSteps: updatedGame.userMoves.length
               })
             );
           } else {
             await dispatch(
               updateGameStatus({
                 availableMoves: newAvailableMoves,
-                status: GameStatus.IDLE,
+                status: GameStatus.IDLE
               })
             );
           }
@@ -147,7 +151,7 @@ export const giveUpGame = createAsyncThunk<void, void, { state: RootState }>(
         finishGame({
           status: GameStatus.GIVEN_UP,
           finishedAt: new Date().toString(),
-          totalSteps: game.userMoves.length,
+          totalSteps: game.userMoves.length
         })
       );
 

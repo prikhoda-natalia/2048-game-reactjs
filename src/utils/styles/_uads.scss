@@ -220,7 +220,11 @@
   font-style: $font-style;
 }
 
-@mixin uads--focus($outline-color: #1f5ccf, $outline-style: solid, $outline-width: 3px) {
+@mixin uads--focus(
+  $outline-color: #1f5ccf,
+  $outline-style: solid,
+  $outline-width: 3px
+) {
   outline-width: $outline-width;
   outline-style: $outline-style;
   outline-color: $outline-color;
@@ -669,7 +673,7 @@
   $border-style: solid,
   $border-width: 1px,
   $cursor: text,
-  $font-family: 'Helvetica, -webkit-pictograph',
+  $font-family: "Helvetica, -webkit-pictograph",
   $font-size: 11px,
   $padding-bottom: 0.3em,
   $padding-left: 0.5em,

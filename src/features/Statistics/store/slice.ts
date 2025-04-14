@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { statisticsAdapter, statisticsInitialState } from "./entityAdapter";
-import { UpdateStatisticsAction } from "../types";
 import { GameStatus } from "~/features/Game/types";
+import type { UpdateStatisticsAction } from "~/features/Statistics/types";
+import { statisticsAdapter, statisticsInitialState } from "./entityAdapter";
 
 const statisticsSlice = createSlice({
   name: "statistics",
@@ -17,8 +17,8 @@ const statisticsSlice = createSlice({
       } else if (payload.status === GameStatus.GIVEN_UP) {
         state.givenUpGameIds.push(payload.id);
       }
-    },
-  },
+    }
+  }
 });
 
 export const { updateStatistics } = statisticsSlice.actions;

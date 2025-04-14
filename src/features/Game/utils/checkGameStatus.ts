@@ -1,16 +1,16 @@
-import {
+import type {
   ActiveGameState,
   FinishedGameState,
-  GameState,
-  GameStatus,
-} from "../types";
+  GameState
+} from "~/features/Game/types";
+import { GameStatus } from "~/features/Game/types";
 
 export const startedGameStatuses = [
   GameStatus.IDLE,
   GameStatus.LOADING,
   GameStatus.WON,
   GameStatus.LOST,
-  GameStatus.GIVEN_UP,
+  GameStatus.GIVEN_UP
 ] as const;
 
 export type StartedGameStatus = (typeof startedGameStatuses)[number];
@@ -23,7 +23,7 @@ export function isGameStatusStarted(
 
 export const activeGameStatuses = [
   GameStatus.IDLE,
-  GameStatus.LOADING,
+  GameStatus.LOADING
 ] as const;
 
 export type ActiveGameStatus = (typeof activeGameStatuses)[number];
@@ -43,7 +43,7 @@ export function isGameActive(
 export const finishedGameStatuses = [
   GameStatus.WON,
   GameStatus.LOST,
-  GameStatus.GIVEN_UP,
+  GameStatus.GIVEN_UP
 ] as const;
 
 export type FinishedGameStatus = (typeof finishedGameStatuses)[number];
@@ -66,7 +66,7 @@ export const disabledGameStatuses = [
   GameStatus.NOT_STARTED,
   GameStatus.WON,
   GameStatus.LOST,
-  GameStatus.GIVEN_UP,
+  GameStatus.GIVEN_UP
 ] as const;
 
 export type DisabledGameStatus = (typeof disabledGameStatuses)[number];
